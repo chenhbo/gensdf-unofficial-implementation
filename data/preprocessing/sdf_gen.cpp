@@ -7,7 +7,9 @@
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
-#include <filesystem>
+#include <experimental/filesystem>
+
+
 
 void recenter_mesh(
   Eigen::MatrixXd & V,
@@ -51,6 +53,8 @@ void write_matrix_to_csv(
 
 int main(int argc, char * argv[])
 {
+  // namespace fs = std::filesystem;
+  // namespace fs = std::experimental::filesystem;//hxz
   std::cout << "Reading the input mesh...\n";
   std::string mesh_file = argv[1]; // mesh file path
   Eigen::MatrixXd mesh_v; // mesh vertices
@@ -108,8 +112,10 @@ int main(int argc, char * argv[])
 
   std::cout << "Saving results...\n";
   std::string save_data_dir = argv[2];
-  if(!std::__fs::filesystem::is_directory(save_data_dir))
-    std::__fs::filesystem::create_directory(save_data_dir);
+  if(!std::experimental::filesystem::is_directory(save_data_dir))
+    std::experimental::filesystem::create_directory(save_data_dir);
+  // if(!std::__fs::filesystem::is_directory(save_data_dir))
+  //   std::__fs::filesystem::create_directory(save_data_dir);
   std::string sdf_file = save_data_dir + "/sdf_data.csv";
   write_matrix_to_csv(sdf_file, SDFData);
 
