@@ -50,6 +50,30 @@ SDF lib
 ```
 
 
+## Pre-Process Data
+preprocess_script.py need to install libigl.
+
+#### Libigl
+Requirement: gcc and g++ > 8.0
+
+Download the preprocessing folder in this repo.
+I already include the new installation way of libigl in CmakeLists.txt.
+Also, I modify the line 10 115 and 116 in sdf_gen.cpp to avoid errors of filesystem.
+
+Now
+```
+mkdir build
+cd build
+cmake ..
+make
+```
+
+go to the path where preprocess_script.py,and 
+```
+python preprocess_script.py -c vertebrae
+```
+
+
 ## Installation
 We recommend creating an [anaconda](https://www.anaconda.com/) environment using our provided `environment.yml`:
 
